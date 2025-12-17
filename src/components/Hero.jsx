@@ -42,13 +42,12 @@ export default function Hero() {
   };
 
   const shineAnimation = {
-    textShadow: [
-      "0 0 20px rgba(255,255,255,0.8)",
-      "0 0 40px rgba(255,255,255,0.9)",
-      "0 0 60px rgba(255,255,255,0.7)",
-      "0 0 40px rgba(255,255,255,0.9)",
-      "0 0 20px rgba(255,255,255,0.8)"
-    ],
+  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+  textShadow: [
+    "0px 0px 0px rgba(255,215,0,0)",
+    "0px 0px 22px rgba(255,215,0,0.9)",
+    "0px 0px 0px rgba(255,215,0,0)",
+  ],
     transition: {
       duration: 3,
       repeat: Infinity,
@@ -66,7 +65,7 @@ export default function Hero() {
   };
 
   return (
-    <section
+    <section id ="home"
       ref={ref}
       className="relative h-screen min-h-[600px] sm:min-h-screen flex items-start sm:items-center justify-center text-center pt-12 sm:pt-20 md:pt-24 pb-10 sm:pb-0 overflow-hidden"
     >
@@ -91,7 +90,7 @@ export default function Hero() {
 
       <div className="relative z-20 text-white px-4 sm:px-6 md:px-8 max-w-4xl mx-auto w-full pt-32 sm:pt-40 md:pt-44 lg:pt-48">
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl tracking-widest mb-4 sm:mb-6 md:mb-8 font-light"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl tracking-widest mb-6 sm:mb-8 md:mb-10 font-light"
           variants={bubbleFloat}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -103,16 +102,28 @@ export default function Hero() {
           }}
         >
           <motion.span
-            className="block drop-shadow-[0_0_40px_rgba(255,255,255,0.9)] md:drop-shadow-[0_0_60px_rgba(255,255,255,0.8)]"
-            animate={shineAnimation}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 
+             font-light tracking-[0.3em] mb-14
+             bg-gradient-to-r from-yellow-300 via-yellow-200 to-orange-400
+             bg-[length:300%_300%]
+             bg-clip-text text-transparent"
+  animate={shineAnimation}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
           >
-            JENNY & JASON
+            NAYANA & MOHAN
           </motion.span>
         </motion.h1>
 
-        {/* ✅ ONLY MOBILE MARGIN FIX HERE */}
+        {/* Updated paragraph only */}
         <motion.p
-          className="mt-12 sm:mt-11 md:mt-13 max-w-xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed px-2 drop-shadow-lg"
+          className="mt-16 sm:mt-18 md:mt-20 max-w-xl mx-auto 
+           text-base sm:text-lg md:text-xl lg:text-2xl 
+           font-semibold leading-relaxed px-2 
+           drop-shadow-lg text-yellow-400"
           custom={0}
           variants={textSequence}
           initial="hidden"
@@ -123,7 +134,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.p
-          className="mt-3 sm:mt-4 md:mt-6 text-xs sm:text-sm md:text-base lg:text-lg tracking-wide drop-shadow-md"
+          className="mt-3 sm:mt-4 md:mt-6 text-xs font-bold sm:text-sm md:text-base lg:text-lg tracking-wide drop-shadow-md "
           custom={1}
           variants={textSequence}
           initial="hidden"
@@ -134,22 +145,21 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.4, duration: 0.6 }}
-            className="drop-shadow-md"
+            className="drop-shadow-md text-yellow-400"
             style={isInView ? subtextFloat : {}}
           >
             Saturday, September 20, 2025
           </motion.span>
           <br className="sm:hidden" />
-          <span className="block mt-1 sm:mt-0 sm:inline-block sm:ml-1">
+          <span className="block mt-1 sm:mt-0 sm:inline-block sm:ml-1  text-yellow-400">
             The Golden Elm Manor
           </span>
           <br />
-          St. Augustine, New York
+          <span className="text-yellow-400">
+          Taj mahal Palace,Mumbai
+          </span>
         </motion.p>
       </div>
     </section>
   );
 }
-
-
-

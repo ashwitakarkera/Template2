@@ -1,14 +1,14 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import mehendi from "../assets/images/mehendi.jfif";
 import reception from "../assets/images/reception.jfif";
 import sangeet from "../assets/images/sangeet.jfif";
 import wedding from "../assets/images/wedding.jfif";
+import bgImage2 from "../assets/images/background2.jfif";
 
 export default function EventTimeline() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeIndex, setActiveIndex] = useState(null);
+  const isInView = useInView(ref, { once: true, margin: "-120px" });
 
   const events = [
     {
@@ -37,114 +37,103 @@ export default function EventTimeline() {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const eventVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.8 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-        delay: i * 0.1,
-      },
-    }),
-  };
-
   return (
     <section
       ref={ref}
       id="events"
-      className="relative max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#88708E]/30 via-[#88708E]/50 to-[#88708E]/30 overflow-hidden"
+      className="relative px-4 sm:px-6 lg:px-8 py-20 lg:py-28 overflow-hidden"
+      style={{
+        backgroundImage: `url(${bgImage2})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,215,0,0.1)_0%,transparent_50%)]"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-[#88708E]/70"></div>
 
+      {/* Heading */}
       <motion.h2
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-center text-white mb-16 lg:mb-20 tracking-widest relative z-10"
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 text-4xl sm:text-5xl md:text-6xl lg:text-7xl 
+                   text-center font-playfair tracking-[0.3em] mb-20
+                   bg-gradient-to-r from-yellow-300 to-orange-400
+                   bg-clip-text text-transparent"
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+        transition={{ duration: 0.9, ease: "easeOut" }}
       >
-        Wedding Events
+        WEDDING EVENTS
       </motion.h2>
 
-      <motion.div
-        className="relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0"
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {/* FULL YELLOW LINE */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-1 h-full lg:h-1 lg:w-full bg-[#FFD700] rounded-full shadow-lg"></div>
-        </div>
+      {/* Timeline */}
+      <div className="relative z-10 max-w-6xl mx-auto space-y-24">
+        {/* Vertical Line */}
+        <div className="absolute left-1/2 top-0 h-full w-1 bg-[#FFD700]/70 -translate-x-1/2 rounded-full"></div>
 
-        {events.map((event, index) => (
-          <motion.div
-            key={event.name}
-            className="relative flex flex-col items-center z-10 w-full lg:w-auto lg:flex-1 max-w-xs mx-auto"
-            custom={index}
-            variants={eventVariants}
-            whileHover={{ scale: 1.05, y: -10 }}
-          >
-            {/* EVENT CIRCLE */}
+        {events.map((event, index) => {
+          const isLeft = index % 2 === 0;
+
+          return (
             <motion.div
-              className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border-4 border-[#FFD700] shadow-2xl overflow-hidden relative
-              ${
-                activeIndex === index
-                  ? "bg-gradient-to-r from-[#c65a52] to-[#e36b5e]"
-                  : "bg-gradient-to-r from-[#ff7a6e] to-[#ff9a85]"
-              }`}
+              key={event.name}
+              className={`relative flex flex-col md:flex-row items-center
+                          ${isLeft ? "md:flex-row" : "md:flex-row-reverse"} gap-10`}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
             >
-              {/* IMAGE FILLS CIRCLE */}
-              <img
-                src={event.img}
-                alt={event.name}
-                className="w-full h-full object-cover"
-              />
+              {/* IMAGE + CIRCLE */}
+              <motion.div
+                className="relative flex-shrink-0"
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div
+                  className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52
+                             rounded-full border-4 border-[#FFD700]
+                             shadow-2xl overflow-hidden"
+                >
+                  <img
+                    src={event.img}
+                    alt={event.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-              {/* Glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FFD700] to-transparent opacity-40 blur-xl animate-pulse"></div>
+                {/* Glow */}
+                <div className="absolute inset-0 rounded-full 
+                                bg-gradient-to-r from-[#FFD700]/40 to-transparent 
+                                blur-xl animate-pulse"></div>
+              </motion.div>
+
+              {/* TEXT */}
+              <motion.div
+                className={`max-w-md text-center md:text-left
+                            ${isLeft ? "md:text-left" : "md:text-right"}`}
+                initial={{ opacity: 0, x: isLeft ? 40 : -40 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-2xl sm:text-3xl font-playfair font-bold text-[#FFD700] mb-4 tracking-wide">
+                  {event.name}
+                </h3>
+
+                <p className="text-base sm:text-lg text-white font-bold tracking-wider">
+                  {event.date}
+                </p>
+
+                <p className="text-lg sm:text-xl text-white font-bold mt-2">
+                  {event.time}
+                </p>
+              </motion.div>
             </motion.div>
-
-            {/* EVENT NAME */}
-            <motion.span
-              className={`mt-6 sm:mt-8 text-sm sm:text-base md:text-lg lg:text-xl text-white text-center tracking-wide font-playfair px-4
-              ${activeIndex === index ? "font-bold" : "font-semibold"}`}
-            >
-              {event.name}
-            </motion.span>
-
-            {/* DATE & TIME */}
-            <motion.div
-              onClick={() => setActiveIndex(index)}
-              className={`mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-center tracking-wider uppercase px-4 py-2 rounded-full border border-white/20 cursor-pointer backdrop-blur-sm
-              ${
-                activeIndex === index
-                  ? "bg-[#FFD700]/30 font-bold text-white"
-                  : "bg-white/10 text-gray-200/90"
-              }`}
-            >
-              <div>{event.date}</div>
-              <div className="font-bold text-[#FFD700] mt-1">
-                {event.time}
-              </div>
-            </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 }
+
+
