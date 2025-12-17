@@ -42,12 +42,12 @@ export default function Hero() {
   };
 
   const shineAnimation = {
-  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-  textShadow: [
-    "0px 0px 0px rgba(255,215,0,0)",
-    "0px 0px 22px rgba(255,215,0,0.9)",
-    "0px 0px 0px rgba(255,215,0,0)",
-  ],
+    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+    textShadow: [
+      "0px 0px 0px rgba(255,215,0,0)",
+      "0px 0px 22px rgba(255,215,0,0.9)",
+      "0px 0px 0px rgba(255,215,0,0)",
+    ],
     transition: {
       duration: 3,
       repeat: Infinity,
@@ -65,14 +65,14 @@ export default function Hero() {
   };
 
   return (
-    <section id ="home"
+    <section id="home"
       ref={ref}
-      className="relative h-screen min-h-[600px] sm:min-h-screen flex items-start sm:items-center justify-center text-center pt-12 sm:pt-20 md:pt-24 pb-10 sm:pb-0 overflow-hidden"
+      className="relative h-screen min-h-[700px] flex flex-col items-center justify-start text-center overflow-hidden pt-24 sm:pt-32"
     >
       <motion.img
         src={couple}
         className="absolute inset-0 w-full h-full object-cover object-center md:object-top"
-        alt="Jenny and Jason"
+        alt="Nayana and Mohan"
         initial={{ scale: 1.05, brightness: 0.6 }}
         animate={isInView ? { scale: 1, brightness: 0.85 } : {}}
         transition={{
@@ -82,83 +82,68 @@ export default function Hero() {
       />
 
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-black/30 via-[#88708E]/20 to-black/30"
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+        className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
       />
 
-      <div className="relative z-20 text-white px-4 sm:px-6 md:px-8 max-w-4xl mx-auto w-full pt-32 sm:pt-40 md:pt-44 lg:pt-48">
+      <div className="relative z-20 text-white px-4 w-full max-w-[95vw] mx-auto">
+        {/* NAMES AT TOP IN SINGLE LINE */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl tracking-widest mb-6 sm:mb-8 md:mb-10 font-light"
+          className="mb-12 md:mb-20"
           variants={bubbleFloat}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           style={isInView ? floatAnimation : {}}
-          whileHover={{
-            scale: 1.02,
-            y: -5,
-            transition: { duration: 0.3 }
-          }}
         >
           <motion.span
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 
-             font-light tracking-[0.3em] mb-14
-             bg-gradient-to-r from-yellow-300 via-yellow-200 to-orange-400
-             bg-[length:300%_300%]
-             bg-clip-text text-transparent"
-  animate={shineAnimation}
-  transition={{
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
+            className="block text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 
+                       font-light tracking-[0.2em] sm:tracking-[0.3em] whitespace-nowrap
+                       bg-gradient-to-r from-yellow-300 via-yellow-200 to-orange-400
+                       bg-[length:300%_300%] bg-clip-text text-transparent uppercase"
+            animate={shineAnimation}
           >
             NAYANA & MOHAN
           </motion.span>
         </motion.h1>
 
-        {/* Updated paragraph only */}
-        <motion.p
-          className="mt-16 sm:mt-18 md:mt-20 max-w-xl mx-auto 
-           text-base sm:text-lg md:text-xl lg:text-2xl 
-           font-semibold leading-relaxed px-2 
-           drop-shadow-lg text-yellow-400"
-          custom={0}
-          variants={textSequence}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          style={isInView ? subtextFloat : {}}
-        >
-          With love and gratitude, we invite you to share in the joy of our wedding day.
-        </motion.p>
-
-        <motion.p
-          className="mt-3 sm:mt-4 md:mt-6 text-xs font-bold sm:text-sm md:text-base lg:text-lg tracking-wide drop-shadow-md "
-          custom={1}
-          variants={textSequence}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          style={isInView ? subtextFloat : {}}
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-            className="drop-shadow-md text-yellow-400"
+        {/* CONTENT MOVED DOWN */}
+        <div className="mt-10 sm:mt-20">
+          <motion.p
+            className="max-w-2xl mx-auto text-base sm:text-xl md:text-2xl 
+                       font-semibold leading-relaxed px-4 
+                       drop-shadow-lg text-yellow-400 font-vin"
+            custom={0}
+            variants={textSequence}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             style={isInView ? subtextFloat : {}}
           >
-            Saturday, September 20, 2025
-          </motion.span>
-          <br className="sm:hidden" />
-          <span className="block mt-1 sm:mt-0 sm:inline-block sm:ml-1  text-yellow-400">
-            The Golden Elm Manor
-          </span>
-          <br />
-          <span className="text-yellow-400">
-          Taj mahal Palace,Mumbai
-          </span>
-        </motion.p>
+            With love and gratitude, we invite you to share in the joy of our wedding day.
+          </motion.p>
+
+          <motion.p
+            className="mt-6 md:mt-10 text-sm sm:text-base md:text-xl tracking-wide drop-shadow-md font-vin"
+            custom={1}
+            variants={textSequence}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            style={isInView ? subtextFloat : {}}
+          >
+            <motion.span className="text-yellow-400 block sm:inline">
+              Saturday, September 20, 2025
+            </motion.span>
+            <span className="hidden sm:inline mx-2 text-yellow-400">|</span>
+            <span className="text-yellow-400 block sm:inline">
+              The Golden Elm Manor
+            </span>
+            <br />
+            <span className="text-yellow-400 mt-2 block">
+              Taj Mahal Palace, Mumbai
+            </span>
+          </motion.p>
+        </div>
       </div>
     </section>
   );
