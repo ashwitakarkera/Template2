@@ -1,0 +1,41 @@
+
+
+/* Optional custom utili
+
+/* Global resets / base tweaks */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+
+
+
+.nav-blur {
+  backdrop-filter: blur(6px);
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@font-face {
+  font-family: "emil";
+  src: url("../assets/fonts/emil.ttf") format("truetype");
+ 
+}
+
+@font-face {
+  font-family: "Mol";
+  src: url("../assets/fonts/mol.ttf") format("truetype");
+}
+
+@theme {
+    --font-emil: 'emil';
+    --font-mol: 'Mol';
+}
