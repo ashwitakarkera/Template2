@@ -11,30 +11,10 @@ export default function EventTimeline() {
   const isInView = useInView(ref, { once: true, margin: "-120px" });
 
   const events = [
-    {
-      name: "Mehendi",
-      date: "12 Jan 2026",
-      time: "11:00 AM",
-      img: mehendi,
-    },
-    {
-      name: "Sangeet",
-      date: "13 Jan 2026",
-      time: "06:00 PM",
-      img: sangeet,
-    },
-    {
-      name: "Wedding",
-      date: "14 Jan 2026",
-      time: "10:00 AM",
-      img: wedding,
-    },
-    {
-      name: "Reception",
-      date: "15 Jan 2026",
-      time: "07:00 PM",
-      img: reception,
-    },
+    { name: "Mehendi", date: "12 Jan 2026", time: "11:00 AM", img: mehendi },
+    { name: "Sangeet", date: "13 Jan 2026", time: "06:00 PM", img: sangeet },
+    { name: "Wedding", date: "14 Jan 2026", time: "10:00 AM", img: wedding },
+    { name: "Reception", date: "15 Jan 2026", time: "07:00 PM", img: reception },
   ];
 
   return (
@@ -67,8 +47,8 @@ export default function EventTimeline() {
 
       {/* Timeline */}
       <div className="relative z-10 max-w-6xl mx-auto space-y-24">
-        {/* Vertical Line */}
-        <div className="absolute left-1/2 top-0 h-full w-1 bg-[#FFD700]/70 -translate-x-1/2 rounded-full"></div>
+        {/* Vertical Line only for md+ */}
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-[#FFD700]/70 -translate-x-1/2 rounded-full"></div>
 
         {events.map((event, index) => {
           const isLeft = index % 2 === 0;
@@ -76,8 +56,9 @@ export default function EventTimeline() {
           return (
             <motion.div
               key={event.name}
-              className={`relative flex flex-col md:flex-row items-center
-                          ${isLeft ? "md:flex-row" : "md:flex-row-reverse"} gap-10`}
+              className={`relative flex flex-col md:flex-row items-center gap-10 ${
+                isLeft ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.15 }}
@@ -110,8 +91,9 @@ export default function EventTimeline() {
 
               {/* TEXT */}
               <motion.div
-                className={`max-w-md text-center md:text-left
-                            ${isLeft ? "md:text-left" : "md:text-right"}`}
+                className={`max-w-md text-center md:text-left ${
+                  isLeft ? "md:text-left" : "md:text-right"
+                }`}
                 initial={{ opacity: 0, x: isLeft ? 40 : -40 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.7 }}
@@ -135,5 +117,3 @@ export default function EventTimeline() {
     </section>
   );
 }
-
-
