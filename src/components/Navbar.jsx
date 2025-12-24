@@ -47,6 +47,9 @@ export default function Navbar() {
           <motion.a href="#events" className={navStyle} whileHover={{ scale: 1.1, y: -2 }}>
             EVENTS
           </motion.a>
+          <motion.a href="#gallery" className={navStyle} whileHover={{ scale: 1.1, y: -2 }}>
+            GALLERY
+          </motion.a>
         </nav>
 
         {/* Mobile Button */}
@@ -84,6 +87,7 @@ export default function Navbar() {
             ["OUR STORY", "#story"],
             ["DETAILS", "#details"],
             ["EVENTS", "#events"],
+            ["GALLERY", "#gallery"],
           ].map(([label, link]) => (
             <motion.a
               key={label}

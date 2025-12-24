@@ -4,6 +4,7 @@ import Timeline from "../../components/Timeline";
 import OurStory from "../../components/OurStory";
 import Footer from "../../components/Footer";
 import Venue from "../../components/Venue";
+import Gallery from "../../components/Gallery";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <OurStory />
        <Timeline />
        <Venue />
+       <Gallery />
        <Footer />
     </div>
   );
